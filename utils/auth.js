@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 14:52:19
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-29 15:00:25
+* @Last Modified time: 2018-03-29 16:18:27
 */
 const config = require('../config')
 const jwt = require('jsonwebtoken')
@@ -23,8 +23,8 @@ const authIsVerified = req => {
   const token = authToken(req)
   if (token) {
     try {
-      const encodedToken = jwt.verify(token, config.AUTH.jwtTokenSecret)
-      if (encodedToken.exp > Math.floor(Date.now() / 1000)) {
+      const decodedToken = jwt.verify(token, config.AUTH.jwtTokenSecret)
+      if (decodedToken.exp > Math.floor(Date.now() / 1000)) {
         return true
       }
     } catch (err) {
