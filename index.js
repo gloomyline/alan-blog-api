@@ -2,21 +2,25 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 11:46:10
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-29 15:22:57
+* @Last Modified time: 2018-03-29 15:44:50
 */
 const Koa = require('koa2')
 const http = require('http')
 const config = require('./config')
-// const koaBody = require('koa-body') // Parse request's body when use method Post
-// const helmet = require('koa-helmet') // For security
-// const mongoosePainate = require('mongoose-paginate') // paginate
+const koaBody = require('koa-body') // Parse request's body when use method Post
+const helmet = require('koa-helmet') // For security
+const mongoosePainate = require('mongoose-paginate') // paginate
 // const cors = require('koa-cors') // cross-origin-allow
-// const initAdmin = require('./middlewares/initAdmin')
-// const interceptor = require('./middlewares/interceptor')
+const initAdmin = require('./middlewares/initAdmin')
+const interceptor = require('./middlewares/interceptor')
 
 // db
 const mongodb = require('./mongodb')
 mongodb.connect()
+
+mongoosePainate.paginate.options = {
+  limit: config.APP.LIMIT
+}
 
 // routes
 const router = require('./routes')
@@ -32,6 +36,17 @@ app.use(async (ctx, next) => {
 })
 
 // middlewares
+app.use(interceptor)
+
+app.use(initAdmin)
+
+app.use(helmet())
+app.use(koaBody({
+  jsonLimit: '10mb',
+  formLimit: '10mb',
+  textLimit: '10mb'
+}))
+
 
 // 404 500 error
 app.use(async (ctx, next) => {
