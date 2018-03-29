@@ -1,0 +1,40 @@
+{
+  "name": "alan-blog-api",
+  "version": "1.0.0",
+  "description": "The api services of Alan's blog system, powered by koa2 and mongodb.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js NODE_ENV=\"development\" --harmony",
+    "pro": "node index.js NODE_ENV=\"production\" --harmony",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gloomyline/alan-blog-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "koa2",
+    "mongodb"
+  ],
+  "author": "AlanWang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gloomyline/alan-blog-api/issues"
+  },
+  "homepage": "https://github.com/gloomyline/alan-blog-api#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.2",
+    "yargs": "^11.0.0"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.2.0",
+    "koa-body": "^2.5.0",
+    "koa-cors": "^0.0.16",
+    "koa-helmet": "^4.0.0",
+    "koa-router": "^7.4.0",
+    "koa2": "^2.0.0-alpha.7",
+    "mongoose": "^5.0.12",
+    "mongoose-paginate": "^5.0.3"
+  }
+}
