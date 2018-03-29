@@ -2,10 +2,10 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 15:01:03
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-29 15:15:24
+* @Last Modified time: 2018-03-29 17:32:44
 */
 const config = require('../config')
-// const controller = require('../controller')
+const Controller = require('../controller')
 const authIsVerified = require('../utils/auth')
 const Router = require('koa-router')
 
@@ -15,8 +15,9 @@ const router = new Router({
 
 router.get('/', (ctx, next) => {
   ctx.response.body = config.INFO
-}).get('/hello', (ctx, next) => {
-  ctx.body = 'Hello, World'
 })
+  .get('/auth', Controller.Auth.getAuth)
+  .put('/auth', Controller.Auth.putAuth)
+  .post('/login', Controller.Auth.login)
 
 module.exports = router
