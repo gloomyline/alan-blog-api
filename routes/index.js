@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 15:01:03
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-29 17:32:44
+* @Last Modified time: 2018-03-30 12:06:53
 */
 const config = require('../config')
 const Controller = require('../controller')
@@ -19,5 +19,8 @@ router.get('/', (ctx, next) => {
   .get('/auth', Controller.Auth.getAuth)
   .put('/auth', Controller.Auth.putAuth)
   .post('/login', Controller.Auth.login)
+
+  .get('/option', Controller.Option.getOption)
+  .put('/option', Controller.Option.putOption)
 
 module.exports = router
