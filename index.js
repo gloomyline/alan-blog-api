@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 11:46:10
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-29 15:44:50
+* @Last Modified time: 2018-03-30 11:53:27
 */
 const Koa = require('koa2')
 const http = require('http')
@@ -65,5 +65,5 @@ app.use(router.routes()).use(router.allowedMethods())
 // start server
 const port = config.APP.PORT
 http.createServer(app.callback()).listen(port, () => {
-  console.log(`Node-Koa is Running, listening port at ${port}`)  
+  console.log(`Node-Koa is Running, listening port at ${port} - ${Date()}`)  
 })
