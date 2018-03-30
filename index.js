@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 11:46:10
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-30 11:53:27
+* @Last Modified time: 2018-03-30 17:50:44
 */
 const Koa = require('koa2')
 const http = require('http')
@@ -49,11 +49,13 @@ app.use(koaBody({
 
 
 // 404 500 error
+let err_count = 0
 app.use(async (ctx, next) => {
   try {
     await next()
   } catch (e) {
-    ctx.body = { code: 0, message: 'Server Internal Server!' }
+    console.error(err_count, e)
+    ctx.body = { code: 0, message: 'Server Internal Error!' }
   }
   if (ctx.status === 404 || ctx.status === 405) {
     ctx.body = { code: 0, message: 'Invalid API Request!' }

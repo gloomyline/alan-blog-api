@@ -2,9 +2,8 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 13:13:36
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-30 15:42:09
+* @Last Modified time: 2018-03-30 17:26:47
 */
-
 const argv = require('yargs').argv
 
 const MONGODB = {
@@ -47,6 +46,7 @@ const INFO = {
   name: 'my_blog',
   version: '1.0.0',
   author: 'AlanWang',
+  email: 'gloomyline@foxmail.com',
   site: 'https://alannala.club',
   powerd: [
     'Vue2',
