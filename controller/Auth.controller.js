@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 16:25:07
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-29 18:00:52
+* @Last Modified time: 2018-03-30 10:22:57
 */
 
 /**
@@ -81,7 +81,7 @@ class AuthController {
       if (_auth.password !== md5Encode(oldPassword)) {
         handleError({ ctx, message: 'Incorrect password.' })
       } else {
-        const password = newPassword === '' ? oldPassword : newPassword
+        const password = (!newPassword) ? oldPassword : newPassword
         let auth = await Auth
                           .findByIdAndUpdate(_id, {
                             _id,
