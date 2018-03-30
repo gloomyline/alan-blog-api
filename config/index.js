@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 13:13:36
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-29 13:25:31
+* @Last Modified time: 2018-03-30 15:42:09
 */
 
 const argv = require('yargs').argv
@@ -16,7 +16,7 @@ const MONGODB = {
 const AUTH = {
   jwtTokenSecret: argv.auth_key || 'my_blog',
   defaultUsername: argv.auth_default_username || 'AlanWang',
-  defaultPassword: argv.auth_default_password || 'AlanJames920814.'
+  defaultPassword: argv.auth_default_password || 'your_admin_password'
 }
 
 const QINIU = {
@@ -29,7 +29,7 @@ const QINIU = {
 
 const EMAIL = {
   account: argv.email_account || 'alanjames007@qq.com',
-  token: argv.email_password || 'AlanJames920814.'
+  password: argv.email_password || 'your_email_password.'
 }
 
 const BAIDU = {
