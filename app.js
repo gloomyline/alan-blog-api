@@ -2,11 +2,12 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 11:46:10
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-30 17:50:44
+* @Last Modified time: 2018-04-02 09:21:48
 */
 const Koa = require('koa2')
 const http = require('http')
 const config = require('./config')
+const { log } = require('./utils/handle')
 const koaBody = require('koa-body') // Parse request's body when use method Post
 const helmet = require('koa-helmet') // For security
 const mongoosePainate = require('mongoose-paginate') // paginate
@@ -54,7 +55,7 @@ app.use(async (ctx, next) => {
   try {
     await next()
   } catch (e) {
-    console.error(err_count, e)
+    log(`${++err_count} - ${e}`, 'red')
     ctx.body = { code: 0, message: 'Server Internal Error!' }
   }
   if (ctx.status === 404 || ctx.status === 405) {
