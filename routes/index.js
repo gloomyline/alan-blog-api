@@ -3,7 +3,7 @@
 * @Date:   2018-03-29 15:01:03
 * @Last Modified by:   AlanWang
 <<<<<<< HEAD
-* @Last Modified time: 2018-04-02 14:30:09
+* @Last Modified time: 2018-04-02 16:16:14
 =======
 * @Last Modified time: 2018-04-02 12:00:46
 >>>>>>> fc56c54ee59bb3ed25b1d08c913a7e086dc60fbe
@@ -50,5 +50,7 @@ router.get('/', (ctx, next) => {
   .post('/comment', Controller.Comments.postComment)
   .patch('/comment', Controller.Comments.patchComment)
   .delete('/comment', Controller.Comments.deleteComment)
+
+  .post('like', Controller.Like.postLike)
 
 module.exports = router
