@@ -44,7 +44,8 @@
     "mongoose-paginate": "^5.0.3",
     "nodemailer": "^4.6.3",
     "nodemailer-smtp-transport": "^2.7.4",
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "simple-netease-cloud-music": "^0.3.4"
   },
   "optionalDependencies": {
     "fsevents": "^1.1.3"
