@@ -3,7 +3,7 @@
 * @Date:   2018-03-29 15:01:03
 * @Last Modified by:   AlanWang
 <<<<<<< HEAD
-* @Last Modified time: 2018-04-02 16:41:03
+* @Last Modified time: 2018-04-02 16:59:19
 =======
 * @Last Modified time: 2018-04-02 12:00:46
 >>>>>>> fc56c54ee59bb3ed25b1d08c913a7e086dc60fbe
@@ -59,5 +59,10 @@ router.get('/', (ctx, next) => {
   .get('/music/song/:song_id', Controller.Music.getSong)
   .get('/music/list/:play_list_id', Controller.Music.getList)
 
+  .get('/book', Controller.Book.getBooks)
+  .post('/book', Controller.Book.postBook)
+  .patch('/book/:id', Controller.Book.patchBook)
+  .put('/book/:id', Controller.Book.putBook)
+  .delete('/book/:id', Controller.Book.deleteBook)
 
 module.exports = router
