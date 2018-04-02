@@ -2,10 +2,10 @@
   "name": "alan-blog-api",
   "version": "1.0.0",
   "description": "The api services of Alan's blog system, powered by koa2 and mongodb.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon index.js NODE_ENV=\"development\" --harmony",
-    "pro": "node index.js NODE_ENV=\"production\" --harmony",
+    "dev": "nodemon app.js NODE_ENV=\"development\" --harmony",
+    "pro": "node app.js NODE_ENV=\"production\" --harmony",
     "test": "mocha test/**/*.js"
   },
   "repository": {
