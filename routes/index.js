@@ -2,7 +2,11 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 15:01:03
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-02 14:19:30
+<<<<<<< HEAD
+* @Last Modified time: 2018-04-02 14:21:06
+=======
+* @Last Modified time: 2018-04-02 12:00:46
+>>>>>>> fc56c54ee59bb3ed25b1d08c913a7e086dc60fbe
 */
 const config = require('../config')
 const Controller = require('../controller')
