@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 11:46:10
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-02 09:21:48
+* @Last Modified time: 2018-04-04 10:17:55
 */
 const Koa = require('koa2')
 const http = require('http')
@@ -11,7 +11,7 @@ const { log } = require('./utils/handle')
 const koaBody = require('koa-body') // Parse request's body when use method Post
 const helmet = require('koa-helmet') // For security
 const mongoosePainate = require('mongoose-paginate') // paginate
-// const cors = require('koa-cors') // cross-origin-allow
+const cors = require('koa-cors') // cross-origin-allow
 const initAdmin = require('./middlewares/initAdmin')
 const interceptor = require('./middlewares/interceptor')
 
@@ -27,7 +27,7 @@ mongoosePainate.paginate.options = {
 const router = require('./routes')
 
 // instanced app
-const app = new Koa()
+const app = module.exports = new Koa()
 
 app.use(async (ctx, next) => {
   const start = new Date()
@@ -35,6 +35,8 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
+
+app.use(cors())
 
 // middlewares
 app.use(interceptor)
