@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 14:33:16
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-04 15:20:25
+* @Last Modified time: 2018-04-08 14:53:34
 */
 const app = require('../app')
 const supertest = require('supertest')
@@ -33,20 +33,6 @@ describe('Api server test started!', () => {
     password: config.AUTH.defaultPassword
   }
 
-  const new_test_user = {
-    _id: userId,
-    username: config.AUTH.defaultUsername,
-    oldpassword: config.AUTH.defaultPassword,
-    newPassword: '123456'
-  }
-
-  const origin_test_user = {
-    _id: userId,
-    username: config.AUTH.defaultUsername,
-    oldpassword: '123456',
-    newPassword: config.AUTH.defaultPassword
-  }
-
   it('Post /login', function (done) {
     request.post('/api/login')
       .send(test_user)
@@ -57,9 +43,10 @@ describe('Api server test started!', () => {
           return done(err)
         }
         const data = res.body
+        console.log(data)
         expect(data).to.be.a('object')
         expect(data).to.have.property('code')
-        expect(data.code).to.equal(0)
+        expect(data.code).to.equal(1)
         done()
         jwt = data.result.token
       })
@@ -77,13 +64,19 @@ describe('Api server test started!', () => {
         const data = res.body
         expect(data).to.be.a('object')
         expect(data).to.have.property('code')
-        expect(data.code).to.equal(0)
-        userId = data.result._id
+        expect(data.code).to.equal(1)
         done()
+        userId = data.result._id
       })
   })
 
   it('Put /auth, change password', function (done) {
+    const new_test_user = {
+      _id: userId,
+      oldPassword: config.AUTH.defaultPassword,
+      newPassword: '123456'
+    }
+
     request.put('/api/auth')
       .set('Authorization', jwt)
       .send(new_test_user)
@@ -95,12 +88,18 @@ describe('Api server test started!', () => {
         const data = res.body
         expect(data).to.be.a('object')
         expect(data).to.have.property('code')
-        expect(data.code).to.equal(0)
+        expect(data.code).to.equal(1)
         done()
       })
   })
 
   it('Put /auth, reset password', function (done) {
+    const origin_test_user = {
+      _id: userId,
+      oldPassword: '123456',
+      newPassword: config.AUTH.defaultPassword
+    }
+
     request.put('/api/auth')
       .set('Authorization', jwt)
       .send(origin_test_user)
@@ -112,7 +111,7 @@ describe('Api server test started!', () => {
         const data = res.body
         expect(data).to.be.a('object')
         expect(data).to.have.property('code')
-        expect(data.code).to.equal(0)
+        expect(data.code).to.equal(1)
         done()
       })
   })

@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 16:25:07
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-30 12:00:28
+* @Last Modified time: 2018-04-08 14:53:20
 */
 
 /**
@@ -86,7 +86,6 @@ class AuthController {
                           .findByIdAndUpdate(_id, {
                             _id,
                             name,
-                            username,
                             slogan,
                             gravatar,
                             password: md5Encode(password)
@@ -95,7 +94,7 @@ class AuthController {
         if (auth) {
           handleSuccess({ ctx, result: auth, message: 'Modified user info successfully!' })
         } else {
-          handleError({ ctx, message: 'Modified user info unsuccessfully!' })
+          handleError({ ctx, message: 'Modified user info unsuccessfully :(' })
         }
       }
     } else {
