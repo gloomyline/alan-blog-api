@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-04-04 15:21:25
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-04 15:46:31
+* @Last Modified time: 2018-04-08 14:15:25
 */
 
 const app = require('../app')
@@ -42,7 +42,7 @@ describe('init::app', () => {
           const data = res.body
           expect(data).to.be.a('object')
           expect(data).to.have.property('code')
-          expect(data.code).to.equal(0)
+          expect(data.code).to.equal(1)
           done()
           jwt = data.result.token
         })
@@ -60,7 +60,7 @@ describe('init::app', () => {
           const data = res.body
           expect(data).to.be.a('object')
           expect(data).to.have.property('code')
-          expect(data.code).to.equal(0)
+          expect(data.code).to.equal(1)
           done()
           optionId = data.result._id
         })
@@ -86,7 +86,7 @@ describe('init::app', () => {
           const data = res.body
           expect(data).to.be.a('object')
           expect(data).to.have.property('code')
-          expect(data.code).to.equal(0)
+          expect(data.code).to.equal(1)
           expect(data.result).to.equal(optionId)
           done()
         })
