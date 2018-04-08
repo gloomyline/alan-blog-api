@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 13:13:36
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-04 14:13:22
+* @Last Modified time: 2018-04-08 17:07:30
 */
 const argv = require('yargs').argv
 
@@ -47,7 +47,7 @@ const INFO = {
   version: '1.0.0',
   author: 'AlanWang',
   email: 'gloomyline@foxmail.com',
-  site: 'https://alannala.club',
+  site: 'http://www.alannala.club',
   powerd: [
     'Vue2',
     'Nuxt.js',
