@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-04-02 10:56:27
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-02 13:54:30
+* @Last Modified time: 2018-04-08 17:12:41
 */
 
 const request = require('request')
@@ -123,7 +123,7 @@ class ArticleController {
 
   // add new article
   static async postArticle (ctx) {
-    const result = new Article(ctx.request.body)
+    const result = await new Article(ctx.request.body)
       .save()
       .catch(err => ctx.throw(500, 'Server Internal Error :('))
     if (result) {
@@ -132,7 +132,7 @@ class ArticleController {
       request.post({
         url: `http://data.zz.baidu.com/urls?site=${config.BAIDU.site}&token=${config.BAIDU.token}`,
         headers: { 'Content-Type': 'text/plain' },
-        body: `${config.INFO.site}/article/${res._id}`
+        body: `${config.INFO.site}/article/${result._id}`
       }, (err, res, body) => {
         log(`Push results:\n${ body }`)
       })
