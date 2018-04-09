@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-04-08 09:28:17
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-09 16:24:21
+* @Last Modified time: 2018-04-09 16:26:22
 */
 const app = require('../app')
 const config = require('../config')
@@ -28,11 +28,10 @@ describe('init::app for article test:', () => {
   })
 
   after(done => {
-    // Article.remove().then(article => {
-    //   log('Remove test articles document completely!')
-    //   server.close(done)
-    // }).catch(err => done(err))
-    server.close(done)
+    Article.remove().then(article => {
+      log('Remove test articles document completely!')
+      server.close(done)
+    }).catch(err => done(err))
   })
 
   it('Login firstly', done => {
