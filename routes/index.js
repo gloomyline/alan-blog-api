@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 15:01:03
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-03 16:59:08
+* @Last Modified time: 2018-04-09 16:10:58
 */
 const config = require('../config')
 const Controller = require('../controller')
@@ -36,11 +36,11 @@ router.get('/', (ctx, next) => {
 
   .get('/articles', Controller.Article.getArticles)
   .post('/article', Controller.Article.postArticle)
-  .get('/article', Controller.Article.getArticle)
-  .patch('/article', Controller.Article.patchArticle)
+  .get('/article/:id', Controller.Article.getArticle)
+  .patch('/article/:id', Controller.Article.patchArticle)
   .put('/article/:id', Controller.Article.putArticle)
   .delete('/article/:id', Controller.Article.deleteArticle)
-  .get('/allArticle', Controller.Article.getAllArticles)
+  .get('/allArticles', Controller.Article.getAllArticles)
 
   .get('/comments', Controller.Comments.getComments)
   .post('/comment', Controller.Comments.postComment)

@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-04-02 10:56:27
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-08 17:12:41
+* @Last Modified time: 2018-04-09 16:09:17
 */
 
 const request = require('request')
@@ -100,7 +100,7 @@ class ArticleController {
     }
 
     const result = await Article
-      .paginate(querys, options)
+      .paginate(querys, opts)
       .catch(err => ctx.throw(500, 'Server Internal Error :('))
     if (result) {
       handleSuccess({
@@ -134,7 +134,7 @@ class ArticleController {
         headers: { 'Content-Type': 'text/plain' },
         body: `${config.INFO.site}/article/${result._id}`
       }, (err, res, body) => {
-        log(`Push results:\n${ body }`)
+        log(`Push results:\n${ body }`, 'blue')
       })
     } else {
       handleError({ ctx, message: 'Add new article failed :(' })
@@ -143,7 +143,7 @@ class ArticleController {
 
   // get article by its ID
   static async getArticle (ctx) {
-    const { _id } = ctx.params
+    const _id = ctx.params.id
     if (!_id) {
       handleError({ ctx, message: 'Invalid params :(' })
       return false
@@ -165,26 +165,25 @@ class ArticleController {
 
   // modify the state and publish of appointed article by id
   static async patchArticle (ctx) {
-    const { _id } = ctx.params
+    const _id = ctx.params.id
     const { state, publish } = ctx.request.body
-
-    const querys = {}
+    const updates = {}
 
     if (state) {
-      querys.state = state
+      updates.state = state
     }
 
     if (publish) {
-      querys.publish = publish
+      updates.publish = publish
     }
 
-    if (!id) {
+    if (!_id) {
       handleError({ ctx, message: 'Invalid params, need id :(' })
       return false
     }
 
     const result = await Article
-      .findByIdAndUpdate(_id, { querys })
+      .findByIdAndUpdate(_id, updates, { new: true })
       .catch(err => ctx.throw(500, 'Server Internal Error :('))
     if (result) {
       handleSuccess({
@@ -199,7 +198,7 @@ class ArticleController {
 
   // modify article by id
   static async putArticle (ctx) {
-    const { _id } = ctx.params
+    const _id = ctx.params.id
     const { title, keyword, tag } = ctx.request.body
 
     delete ctx.request.body.create_at
@@ -216,8 +215,10 @@ class ArticleController {
       return false
     }
 
+    const updates = { title, keyword, tag }
+
     const result = await Article
-      .findByIdAndUpdate(_id, { title, keyword }, { new: true })
+      .findByIdAndUpdate(_id, updates, { new: true })
       .catch(err => ctx.throw(500, 'Server Internal Error :('))
     if (result) {
       handleSuccess({
@@ -232,7 +233,7 @@ class ArticleController {
 
   // remove appointed article be its ID
   static async deleteArticle (ctx) {
-    const { _id } = ctx.params
+    const _id= ctx.params.id
 
     if (!_id) {
       handleError({ ctx, message: 'Invalid article id params :(' })
