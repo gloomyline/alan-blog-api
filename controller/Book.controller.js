@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-04-02 16:44:35
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-02 17:30:22
+* @Last Modified time: 2018-04-10 15:20:01
 */
 
 const Book = require('../model/book.model')
@@ -79,7 +79,7 @@ class BookController {
   }
 
   static async putBook (ctx) {
-    const { _id } = ctx.params
+    const _id = ctx.params.id
 
     const { name, description, thumb } = ctx.request.body
 
@@ -99,7 +99,7 @@ class BookController {
   }
 
   static async patchBook (ctx) {
-    const { _id } = ctx.params
+    const _id = ctx.params.id
 
     if (!_id) {
       ctx.throw(401, 'Invalid params')
@@ -125,7 +125,7 @@ class BookController {
   }
 
   static async deleteBook (ctx) {
-    const { _id } = ctx.params
+    const _id = ctx.params.id
 
     if (!_id) {
       ctx.throw(500, 'Invalid params!')
