@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-29 15:01:03
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-09 16:10:58
+* @Last Modified time: 2018-04-10 15:01:45
 */
 const config = require('../config')
 const Controller = require('../controller')
@@ -30,7 +30,7 @@ router.get('/', (ctx, next) => {
 
   .get('/tags', Controller.Tag.getTags)  
   .post('/tag', Controller.Tag.postTag)
-  .patch('/tag', Controller.Tag.patchTag)
+  .patch('/tags', Controller.Tag.patchTags)
   .put('/tag/:id', Controller.Tag.putTag)
   .delete('/tag/:id', Controller.Tag.deleteTag)
 

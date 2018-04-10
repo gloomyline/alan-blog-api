@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-04-02 09:31:23
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-04-02 10:55:35
+* @Last Modified time: 2018-04-10 15:05:22
 */
 
 const Tag = require('../model/tag.model')
@@ -11,7 +11,7 @@ const {
   log,
   handleSuccess,
   handleError
-} = require('../utils/auth')
+} = require('../utils/handle')
 
 const authIsVerified = require('../utils/auth')
 
@@ -110,7 +110,7 @@ class TagController {
   }
 
   // sort tags
-  static async patchTag (ctx) {
+  static async patchTags (ctx) {
     const { ids } = ctx.request.body
 
     if (!Array.isArray(ids)) {
@@ -145,7 +145,7 @@ class TagController {
       .findByIdAndUpdate(_id, { name, description }, { new: true })
       .catch(err => ctx.throw(500, 'Server Internal Error!'))
     if (result) {
-      handleSuccess({ ctx, message: 'Modified tag successfully :)' })
+      handleSuccess({ ctx, result, message: 'Modified tag successfully :)' })
     } else {
       handleError({ ctx, message: 'Modified tag failed :(' })
     }
