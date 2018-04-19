@@ -2,7 +2,7 @@
 * @Author: AlanWang
 * @Date:   2018-03-30 14:17:29
 * @Last Modified by:   AlanWang
-* @Last Modified time: 2018-03-30 17:53:12
+* @Last Modified time: 2018-04-19 17:06:32
 */
 
 /**
@@ -129,11 +129,11 @@ class HeroController {
       hero.address.range = ip_location.range,
       hero.address.country = ip_location.country
     }
-    const result = new Hero(hero)
+    const result = await new Hero(hero)
       .save()
       .catch(err => ctx.throw(500, 'Server Internal Error!'))
     if (result) {
-      handleSuccess({ ctx, message: 'You have posted your message successfully, please wait patiently!' })
+      handleSuccess({ ctx, result, message: 'You have posted your message successfully, please wait patiently!' })
       sendMail({
         to: config.INFO.email,
         subject: 'There is a new message in your blog!',
