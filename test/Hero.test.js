@@ -22,15 +22,14 @@ describe('::init app for testing Hero', () => {
   })
 
   after(done => {
-    // Hero.remove()
-    //   .then(hero => {
-    //     server.close(done)
-    //     log('Removed the test hero data completely!')
-    //   })
-    //   .catch(err => {
-    //     log(err, 'red')
-    //   })
-    server.close(done)
+    Hero.remove()
+      .then(hero => {
+        server.close(done)
+        log('Removed the test hero data completely!')
+      })
+      .catch(err => {
+        log(err, 'red')
+      })
   })
 
   it('Post /api/login', done => {
